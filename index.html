@@ -389,6 +389,11 @@
         #engineering {
             background: #e3f5f5;
         }
+
+        /* Programming Section */
+        #programming {
+            background: #f0e6ff;
+        }
         
         /* Design Section */
         #design {
@@ -598,8 +603,9 @@
         <ul class="nav-menu">
             <li><a href="#" onclick="scrollToTop(); return false;">Home</a></li>
             <li><a href="about.html">About</a></li>
-            <li><a href="#engineering">Engineering</a></li>
-            <li><a href="#design">Design</a></li>
+            <li><a href="engineering.html">Engineering</a></li>
+            <li><a href="programming.html">Programming</a></li>
+            <li><a href="design.html">Design</a></li>
         </ul>
     </nav>
 
@@ -734,11 +740,50 @@
         </div>
     </section>
 
-    <!-- Engineering & Code Section -->
+    <!-- Engineering Section -->
     <section id="engineering">
         <div class="container">
-            <h2>Engineering & Code</h2>
+            <h2>Engineering</h2>
             <p class="intro">My technical projects exploring mechanical engineering and software development.</p>
+            
+            <div class="project-grid">
+                <div class="project-card" onclick="openModal(projects.project2)">
+                    <div class="project-image">Project Image</div>
+                    <div class="project-content">
+                        <h3>Project Title</h3>
+                        <p>Brief description of your engineering or coding project.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" onclick="openModal(projects.project1)">
+                    <div class="project-image">Project Image</div>
+                    <div class="project-content">
+                        <h3>Project Title</h3>
+                        <p>Brief description of your engineering or coding project.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card" onclick="openModal(projects.project1)">
+                    <div class="project-image">Project Image</div>
+                    <div class="project-content">
+                        <h3>Project Title</h3>
+                        <p>Brief description of your engineering or coding project.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div>
+                <a href="engineering.html" class="section-button">See More!</a>
+            </div>
+
+        </div>
+    </section>
+
+     <!-- Programming Section -->
+    <section id="programming">
+        <div class="container">
+            <h2>Programming</h2>
+            <p class="intro">My technical projects exploring software development.</p>
             
             <div class="project-grid">
                 <div class="project-card" onclick="openModal(projects.minesweeperButBetter)">
@@ -783,7 +828,7 @@
             </div>
 
             <div>
-                <a href="engineering.html" class="section-button">See More!</a>
+                <a href="programming.html" class="section-button">See More!</a>
             </div>
 
         </div>

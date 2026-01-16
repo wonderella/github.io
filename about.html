@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About - Your Name</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #fef9f3;
+        }
+        
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            right: 0;
+            padding: 2rem;
+            z-index: 1000;
+        }
+        
+        .menu-toggle {
+            background: #fef9f3;
+            border: 3px solid #1a1a1a;
+            border-radius: 12px;
+            padding: 0;
+            cursor: pointer;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .menu-toggle:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+            background: #64b496;
+        }
+        
+        .menu-toggle span {
+            width: 24px;
+            height: 3px;
+            background: #1a1a1a;
+            border-radius: 2px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(4px, 7px);
+        }
+        
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+            transform: translateX(20px);
+        }
+        
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(4px, -7px);
+        }
+        
+        .nav-menu {
+            position: absolute;
+            top: 95px;
+            right: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            list-style: none;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-20px);
+            transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+        }
+        
+        .nav-menu.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .nav-menu li a {
+            color: #1a1a1a;
+            background: #fef9f3;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.9rem;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            border: 3px solid #1a1a1a;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: block;
+            white-space: nowrap;
+            text-align: left;
+        }
+        
+        .nav-menu li a:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+            background: #64b496;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: #e8f5e3;
+            position: relative;
+            overflow: hidden;
+            padding: 4rem 2rem;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                repeating-linear-gradient(45deg, transparent, transparent 35px, rgba(100, 180, 150, 0.03) 35px, rgba(100, 180, 150, 0.03) 70px);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 2rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            line-height: 1.1;
+        }
+        
+        /* Polaroid Gallery */
+        .polaroid-gallery {
+            display: flex;
+            gap: 2rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+        
+        .polaroid {
+            background: white;
+            padding: 1rem;
+            padding-bottom: 3rem;
+            border: 3px solid #1a1a1a;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+            transform: rotate(-2deg);
+            transition: all 0.3s ease;
+        }
+        
+        .polaroid:nth-child(2) {
+            transform: rotate(3deg);
+            margin-top: 1rem;
+        }
+        
+        .polaroid:nth-child(3) {
+            transform: rotate(-1deg);
+            margin-top: -0.5rem;
+        }
+        
+        .polaroid:nth-child(4) {
+            transform: rotate(2deg);
+            margin-top: 1.5rem;
+        }
+        
+        .polaroid:hover {
+            transform: rotate(0deg) scale(1.05);
+            box-shadow: 10px 10px 0 rgba(0,0,0,0.15);
+            z-index: 10;
+        }
+        
+        .polaroid-image {
+            width: 180px;
+            height: 180px;
+            background: linear-gradient(135deg, #a8e6cf 0%, #7ec8e3 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+        
+        .polaroid-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Main Content Sections */
+        section {
+            padding: 80px 0;
+        }
+        
+        .intro-section {
+            background: #fff5e8;
+        }
+        
+        .intro-section h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .intro-text {
+            max-width: 800px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            line-height: 1.8;
+            color: #4a4a4a;
+        }
+        
+        .intro-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Skills Section */
+        .skills-section {
+            background: #e3f5f5;
+        }
+        
+        .skills-section h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 3px solid #1a1a1a;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+        }
+        
+        .skill-card h3 {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            color: #64b496;
+            letter-spacing: -0.5px;
+        }
+        
+        .skill-card ul {
+            list-style: none;
+        }
+        
+        .skill-card li {
+            padding: 0.7rem 0;
+            color: #4a4a4a;
+            font-size: 1.05rem;
+            border-bottom: 2px solid #f0f0f0;
+        }
+        
+        .skill-card li:last-child {
+            border-bottom: none;
+        }
+        
+        /* Education Section */
+        .education-section {
+            background: #fef9f3;
+        }
+        
+        .education-section h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .education-content {
+            max-width: 800px;
+            margin: 0 auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            border: 4px solid #1a1a1a;
+            box-shadow: 8px 8px 0 rgba(0,0,0,0.1);
+        }
+        
+        .education-content h3 {
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            color: #1a1a1a;
+        }
+        
+        .education-content .university {
+            font-size: 1.3rem;
+            color: #64b496;
+            margin-bottom: 0.3rem;
+            font-weight: 700;
+        }
+        
+        .education-content .grad-year {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            margin-bottom: 2rem;
+        }
+        
+        .coursework {
+            margin-top: 2rem;
+        }
+        
+        .coursework h4 {
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            color: #7ec8e3;
+        }
+        
+        .coursework ul {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 0.8rem;
+        }
+        
+        .coursework li {
+            padding: 0.8rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border: 2px solid #1a1a1a;
+            font-size: 1rem;
+        }
+        
+        /* Fun Facts Section */
+        .fun-facts-section {
+            background: #fff5e8;
+        }
+        
+        .fun-facts-section h2 {
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+        
+        .facts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        .fact-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 16px;
+            border: 3px solid #1a1a1a;
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .fact-emoji {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .fact-card p {
+            font-size: 1.1rem;
+            color: #4a4a4a;
+            line-height: 1.6;
+        }
+        
+        /* Contact Section */
+        .contact {
+            background: #1a1a1a;
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+        
+        .contact::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, #64b496 0%, #7ec8e3 50%, #ffa07a 100%);
+        }
+        
+        .contact h2 {
+            color: white;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+            margin-bottom: 1rem;
+        }
+        
+        .contact p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+        }
+        
+        .contact-links a {
+            color: #1a1a1a;
+            background: #64b496;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 3px solid #1a1a1a;
+            box-shadow: 4px 4px 0 rgba(255,255,255,0.1);
+        }
+        
+        .contact-links a:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(255,255,255,0.2);
+            background: #7ec8e3;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .polaroid-gallery {
+                gap: 1rem;
+            }
+            
+            .polaroid {
+                width: 150px;
+            }
+            
+            .polaroid-image {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .intro-section h2,
+            .skills-section h2,
+            .education-section h2,
+            .fun-facts-section h2,
+            .contact h2 {
+                font-size: 2rem;
+            }
+            
+            .education-content {
+                padding: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <button class="menu-toggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <ul class="nav-menu">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="engineering.html">Engineering</a></li>
+            <li><a href="design.html">Design</a></li>
+        </ul>
+    </nav>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.querySelector('.nav-menu');
+            const toggle = document.querySelector('.menu-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            });
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>I'm So Happy<br>You're Here!</h1>
+            
+            <div class="polaroid-gallery">
+                <div class="polaroid">
+                    <div class="polaroid-image">
+                        <img src="images/photo1.jpg" alt="Photo 1">
+                    </div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-image">
+                        <img src="images/photo2.jpg" alt="Photo 2">
+                    </div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-image">
+                        <img src="images/photo3.jpg" alt="Photo 3">   
+                    </div>
+                </div>
+                <div class="polaroid">
+                    <div class="polaroid-image">
+                        <img src="images/photo4.jpg" alt="Photo 4">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section class="intro-section">
+        <div class="container">
+            <h2> About Me</h2>
+            <div class="intro-text">
+                <p>Hey there! I'm [Your Name], a second-semester freshman at [Your University] studying mechanical engineering. But here's the thing—I've never been the kind of person who fits neatly into one box.</p>
+                
+                <p>Before college, I spent years exploring the creative side of things: graphic design, video editing, building social media content that actually engaged people. I learned how to tell stories visually, how to make complex ideas feel accessible, and how to communicate in a way that resonates.</p>
+                
+                <p>Now I'm diving deep into engineering, and I'm realizing that my creative background isn't separate from my technical work—it's what makes me different. Whether I'm designing a mechanism or crafting a visual narrative, I'm always thinking about how to bridge the gap between function and feeling, between technical precision and human connection.</p>
+                
+                <p>I'm driven by curiosity, energized by challenges, and always looking for ways to combine my interests in unexpected ways. Thanks for stopping by to learn more about my journey!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <div class="container">
+            <h2>What I Bring to the Table</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Engineering & Code</h3>
+                    <ul>
+                        <li>Python Programming</li>
+                        <li>CAD Software (SolidWorks)</li>
+                        <li>MATLAB</li>
+                        <li>JavaScript & HTML/CSS</li>
+                        <li>3D Printing & Prototyping</li>
+                        <li>Technical Problem Solving</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Design & Media</h3>
+                    <ul>
+                        <li>Adobe Premiere Pro</li>
+                        <li>Adobe Photoshop</li>
+                        <li>Adobe Illustrator</li>
+                        <li>Video Editing & Production</li>
+                        <li>Social Media Strategy</li>
+                        <li>Visual Storytelling</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-card">
+                    <h3>Soft Skills</h3>
+                    <ul>
+                        <li>Creative Problem Solving</li>
+                        <li>Team Collaboration</li>
+                        <li>Project Management</li>
+                        <li>Clear Communication</li>
+                        <li>Attention to Detail</li>
+                        <li>Adaptability</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section class="education-section">
+        <div class="container">
+            <h2>Education</h2>
+            <div class="education-content">
+                <h3>B.S. Mechanical Engineering</h3>
+                <p class="university">Carnegie Mellon University</p>
+                <p class="grad-year">Expected Graduation: May 2029</p>
+                
+                <div class="coursework">
+                    <h4>Selected Coursework</h4>
+                    <ul>
+                        <li>Fundamentals of Mechanical Engineering</li>
+                        <li>Introduction to Engineering Design, Innovation, and Entrepreneurship</li>
+                        <li>Fundamentals of Programming</li>
+                        <li>Social Psychology</li>
+                        <li>Foundations of Drama</li>
+                        <li>Effective Coding with AI</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fun Facts Section -->
+    <section class="fun-facts-section">
+        <div class="container">
+            <h2>Beyond the Resume</h2>
+            <div class="facts-grid">
+                <div class="fact-card">
+                    <div class="fact-emoji">🎮</div>
+                    <p>Avid gamer who thinks about game mechanics way too much</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-emoji">☕</div>
+                    <p>Coffee enthusiast - probably on my third cup right now</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-emoji">🎵</div>
+                    <p>Always working with music on, from lo-fi to indie rock</p>
+                </div>
+                <div class="fact-card">
+                    <div class="fact-emoji">📚</div>
+                    <p>Love reading about design, tech, and random Wikipedia deep dives</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p>Want to collaborate, chat about projects, or just say hi? I'd love to hear from you!</p>
+            
+            <div class="contact-links">
+                <a href="mailto:your.email@example.com">Email</a>
+                <a href="https://linkedin.com/in/yourprofile" target="_blank">LinkedIn</a>
+                <a href="https://github.com/yourusername" target="_blank">GitHub</a>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

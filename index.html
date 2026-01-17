@@ -599,6 +599,28 @@
             text-transform: uppercase;
         }
 
+        .modal-project-button {
+            display: inline-block;
+            padding: 1rem 2rem;
+            background: #64b496;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-weight: 700;
+            text-transform: uppercase;
+            border-radius: 50px;
+            border: 3px solid #1a1a1a;
+            box-shadow: 4px 4px 0 rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            letter-spacing: 0.5px;
+            text-align: center;
+        }
+
+        .modal-project-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 6px 6px 0 rgba(0,0,0,0.15);
+            background: #7ec8e3;
+        }
+
         @media (max-width: 768px) {
             nav {
                 padding: 1rem;
@@ -704,6 +726,13 @@
             } else {
                 // Default placeholder
                 gallery.innerHTML = '<div class="modal-gallery-placeholder">No media available</div>';
+            }
+
+            const buttonContainer = document.getElementById('modalButtonContainer');
+            if (projectData.buttonText && projectData.buttonLink) {
+                buttonContainer.innerHTML = `<a href="${projectData.buttonLink}" target="_blank" class="modal-project-button">${projectData.buttonText}</a>`;
+            } else {
+                buttonContainer.innerHTML = ''; // Clear if no button data
             }
             
             modal.classList.add('active');
@@ -972,6 +1001,9 @@
                     <div class="modal-gallery-placeholder">Image 2</div>
                     <div class="modal-gallery-placeholder">Image 3</div>
                 </div>
+
+                <div id="modalButtonContainer" style="margin-top: 1rem;"></div>
+
             </div>
         </div>
     </div>

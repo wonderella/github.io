@@ -7,6 +7,8 @@ const projects = {
         why: 'Minesweeper is a classic game that I enjoy quite a lot, but found aesthetically uninteresting and repetitive, thus leading to many themes and gamemodes.',
         how: 'Using Python, CMU CS 112 Graphics, and built within CS Academy',
         embed: 'https://academy.cs.cmu.edu/sharing/linenDuck437082'
+        buttonText: 'See on GitHub',
+        buttonLink: 
     },
     wishWeekReveal: {
         title: 'Wish Week Reveal',

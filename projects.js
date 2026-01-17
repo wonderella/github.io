@@ -18,6 +18,8 @@ const projects = {
         why: 'Wish Week is a fundraising event for Make-A-Wish Colorado where we raise money for a child with a critical illness. This video sets off the entire fundraising week.',
         how: 'Coordinating filming times and locations, shooting footage, and editing clips.',
         embed: "https://www.youtube.com/embed/-YarKRqx_uU"
+        buttonText: 'Watch on YouTube',
+        buttonLink: 'https://youtu.be/-YarKRqx_uU'
     }
 }
     // ... all your projects

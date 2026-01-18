@@ -35,8 +35,8 @@ const projects = {
         who: 'Solo project within Fundamentals of Mechanical Engineering (24-101)',
         what: 'A hand-powered flashlight using gear systems to convert rotational energy into electrical energy to power an LED light',
         when: 'Fall 2025 over 1 week',
-        why: 'A project to calculate gear ratios and design a gear to reach a target output speed from provided CAD file.',
-        how: 'Using SolidWorks for CAD, laser cutting and 3D printing for manufacturing, and calculations to determine gear ratios',
+        why: 'A project to calculate gear ratios and design a gear to reach a target output speed within given constraints.',
+        how: 'Modified CAD assembly in SolidWorks, laser cutting and 3D printing for manufacturing, and gear ratio calculations',
         images: ['images/flashlight.jpg', 'images/flashlightCAD.jpg']
     },
     countingLines: {
@@ -57,10 +57,18 @@ const projects = {
         when: 'Spring 2025',
         why: 'To create a cohesive visual identity for a fundraising event, designing social media graphics and logos.',
         how: 'Designed using social media graphics with Canva and logos with Linearity Curve and help from Lance Kirkpatrick',
-        images: ['images/wishWeekRevealThumbnail.jpg'],
-        buttonText: 'See Code on GitHub',
-        buttonLink: 'https://github.com/wonderella/controlSystemsChallenge'
+        images: ['images/wishWeek1.jpg', 'images/wishWeek2.jpg'],
+    },
+    selectedSocialMedia: {
+        title: 'Selected Social Media Content',
+        who: 'Creating social media content as a part of various roles',
+        what: 'A collection of social media content created for various activites, showcasing skills in graphic design and audience engagement.',
+        when: '2022-2025',
+        why: 'To help share information and engage with audiences about events occuring in school and community activities.',
+        how: 'Using tools like Canva, CapCut, and engaging in photography to create graphics and visual content.',
+        images: ['images/socialMedia1.jpg', 'images/socialMedia2.jpg', 'images/socialMedia3.jpg'],
+        buttonText: 'See Full Portfolio',
+        buttonLink: 'https://www.canva.com/design/DAG-us1ztq8/upItdGn9rDE7kFANSrDJzw/view?utm_content=DAG-us1ztq8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h24f809fd63'
     }
 
 }
-    // ... all your projects

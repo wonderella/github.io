@@ -69,6 +69,28 @@ const projects = {
         images: ['images/socialMedia1.jpg', 'images/socialMedia2.jpg', 'images/socialMedia3.jpg'],
         buttonText: 'See Full Portfolio',
         buttonLink: 'https://www.canva.com/design/DAG-us1ztq8/upItdGn9rDE7kFANSrDJzw/view?utm_content=DAG-us1ztq8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=h24f809fd63'
+    },
+    fenceDefense: {
+        title: 'Fence Defense',
+        who: 'A team of four created for a Hackathon: Hack112',
+        what: 'A tower defense game where players place various turrets and their phone flashlight to stop incoming enemies from attacking the fence',
+        when: 'Fall 2025 in 24 hours',
+        why: 'The Fence is an important landmark at CMU, and this game showcases not only the importance of our tradition, but showcases our best skills from 15-112',
+        how: 'Using Python, CMU CS 112 Graphics, Open CV, and Canva to program game mechanics, graphics, and user interface',
+        images: ['images/hack112menu.jpg', 'images/hack112gameplay.jpg'],
+        buttonText: 'See on GitHub',
+        buttonLink: 'https://github.com/F25-Hack112/hack112-group-16'
+    }
+    tetris: {
+        title: 'Tetris Game',
+        who: 'Solo project built within Fundamentals of Programming (15-112)',
+        what: 'A Tetris game built using Python and CMU CS 112 Graphics, featuring classic Tetris gameplay and exploring user interface.',
+        when: 'Fall 2025 over 1 week',
+        why: 'To practice programming skills and create a fun, interactive game that I enjoy playing.',
+        how: 'Using Python programming language and CMU CS 112 Graphics library, alongisde some guideded lessons within CS Academy',
+        embed: 'https://academy.cs.cmu.edu/sharing/coralBird930923',
+        buttonText: 'See on GitHub',
+        buttonLink: ''
     }
 
 }

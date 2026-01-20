@@ -493,7 +493,7 @@
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="engineering.html">Engineering</a></li>
-            <li><a href="programming.html">Programming</a></li>
+            <li><a href="#" onclick="scrollToTop(); return false;">Programming</a></li>
             <li><a href="design.html">Design</a></li>
         </ul>
     </nav>
@@ -625,6 +625,10 @@
                 document.querySelector('.menu-toggle').classList.remove('active');
             });
         });
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
         
         function openModal(projectData) {
             const modal = document.getElementById('projectModal');
@@ -672,6 +676,7 @@
             if (e.target === this) {
                 closeModal();
             }
+
         });
     </script>
 </body>

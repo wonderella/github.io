@@ -183,6 +183,68 @@
             max-width: 600px;
             margin: 0 auto;
         }
+
+        /* Gradient text for name */
+        .hero h1 {
+            font-size: 8rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: #1a1a1a;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            background: linear-gradient(135deg, #64b496 0%, #7ec8e3 50%, #64b496 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradient-shift 4s ease infinite;
+        }
+
+        @keyframes gradient-shift {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        /* Rotating tagline animation */
+        .hero p {
+            font-size: 2rem;
+            color: #2d5a4a;
+            font-weight: 500;
+            max-width: 600px;
+            margin: 0 auto;
+            min-height: 3rem;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+
+        .hero p.fade-out {
+            opacity: 0;
+        }
+
+        /* Scroll indicator */
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            cursor: pointer;
+            z-index: 2;
+        }
+
+        .scroll-indicator svg {
+            width: 30px;
+            height: 30px;
+            stroke: #2d5a4a;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
         
         /* Section Styling */
         section {
@@ -681,84 +743,17 @@
 
     <script src="projects.js"></script>
 
-    <script> // I found AI least helpful in this section. I could ask it for bits, but the animation itself was rough (and is still rough) 
-        function toggleMenu() {
-            const menu = document.querySelector('.nav-menu');
-            const toggle = document.querySelector('.menu-toggle');
-            menu.classList.toggle('active');
-            toggle.classList.toggle('active');
-        }
-        
-        // Close menu when clicking a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-menu').classList.remove('active');
-                document.querySelector('.menu-toggle').classList.remove('active');
-            });
-        });
-        
-        function scrollToTop() {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-
-        function openModal(projectData) {
-            const modal = document.getElementById('projectModal');
-            document.getElementById('modalTitle').textContent = projectData.title;
-            document.getElementById('modalWho').textContent = projectData.who;
-            document.getElementById('modalWhat').textContent = projectData.what;
-            document.getElementById('modalWhen').textContent = projectData.when;
-            document.getElementById('modalWhy').textContent = projectData.why;
-            document.getElementById('modalHow').textContent = projectData.how;
-            
-            // Handle gallery images or embed
-            const gallery = document.getElementById('modalGallery');
-            
-            if (projectData.embed) {
-                // If there's an embed URL, show iframe
-                gallery.innerHTML = `<iframe src="${projectData.embed}" 
-                    style="width: 100%; height: 500px; border: 3px solid #1a1a1a; border-radius: 12px;" 
-                    frameborder="0" allowfullscreen></iframe>`;
-            } else if (projectData.images && projectData.images.length > 0) {
-                // If there are images, show gallery
-                gallery.innerHTML = projectData.images.map(img => 
-                    `<img src="${img}" alt="${projectData.title}">`
-                ).join('');
-            } else {
-                // Default placeholder
-                gallery.innerHTML = '<div class="modal-gallery-placeholder">No media available</div>';
-            }
-
-            const buttonContainer = document.getElementById('modalButtonContainer');
-            if (projectData.buttonText && projectData.buttonLink) {
-                buttonContainer.innerHTML = `<a href="${projectData.buttonLink}" target="_blank" class="modal-project-button">${projectData.buttonText}</a>`;
-            } else {
-                buttonContainer.innerHTML = ''; // Clear if no button data
-            }
-            
-            modal.classList.add('active');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('projectModal');
-            modal.classList.remove('active');
-            document.body.style.overflow = 'auto';
-        }
-
-        // Close modal when clicking outside content
-        document.getElementById('projectModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeModal();
-            }
-    });
-
-    </script>
-
     <!-- Hero Section -->
     <section class="hero">
         <div class="hero-content">
             <h1>Rachael Chung</h1>
-            <p>Mechanical Engineer and Designer! <br> Building at the intersection of design and technology</p>
+            <p id="rotating-tagline">Creative Engineer</p>
+        </div>
+        <div class="scroll-indicator" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+            <svg viewBox="0 0 24 24">
+                <polyline points="7 13 12 18 17 13"></polyline>
+                <polyline points="7 6 12 11 17 6"></polyline>
+            </svg>
         </div>
     </section>
 
@@ -1016,5 +1011,106 @@
         </div>
     </footer>
 
+    <script> // I found AI least helpful in this section. I could ask it for bits, but the animation itself was rough (and is still rough) 
+        function toggleMenu() {
+            const menu = document.querySelector('.nav-menu');
+            const toggle = document.querySelector('.menu-toggle');
+            menu.classList.toggle('active');
+            toggle.classList.toggle('active');
+        }
+        
+        // Close menu when clicking a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.querySelector('.nav-menu').classList.remove('active');
+                document.querySelector('.menu-toggle').classList.remove('active');
+            });
+        });
+        
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+        function openModal(projectData) {
+            const modal = document.getElementById('projectModal');
+            document.getElementById('modalTitle').textContent = projectData.title;
+            document.getElementById('modalWho').textContent = projectData.who;
+            document.getElementById('modalWhat').textContent = projectData.what;
+            document.getElementById('modalWhen').textContent = projectData.when;
+            document.getElementById('modalWhy').textContent = projectData.why;
+            document.getElementById('modalHow').textContent = projectData.how;
+            
+            // Handle gallery images or embed
+            const gallery = document.getElementById('modalGallery');
+            
+            if (projectData.embed) {
+                // If there's an embed URL, show iframe
+                gallery.innerHTML = `<iframe src="${projectData.embed}" 
+                    style="width: 100%; height: 500px; border: 3px solid #1a1a1a; border-radius: 12px;" 
+                    frameborder="0" allowfullscreen></iframe>`;
+            } else if (projectData.images && projectData.images.length > 0) {
+                // If there are images, show gallery
+                gallery.innerHTML = projectData.images.map(img => 
+                    `<img src="${img}" alt="${projectData.title}">`
+                ).join('');
+            } else {
+                // Default placeholder
+                gallery.innerHTML = '<div class="modal-gallery-placeholder">No media available</div>';
+            }
+
+            const buttonContainer = document.getElementById('modalButtonContainer');
+            if (projectData.buttonText && projectData.buttonLink) {
+                buttonContainer.innerHTML = `<a href="${projectData.buttonLink}" target="_blank" class="modal-project-button">${projectData.buttonText}</a>`;
+            } else {
+                buttonContainer.innerHTML = ''; // Clear if no button data
+            }
+            
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('projectModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside content
+        document.getElementById('projectModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeModal();
+            }
+        });
+
+        // Rotating taglines
+        const taglines = [
+            "Creative Engineer",
+            "Designer & Builder", 
+            "Making Ideas Real",
+            "Where Art Meets Engineering"
+        ];
+
+        let currentTaglineIndex = 0;
+        const taglineElement = document.getElementById('rotating-tagline');
+
+        function rotateTagline() {
+            // Fade out
+            taglineElement.classList.add('fade-out');
+            
+            setTimeout(() => {
+                // Change text
+                currentTaglineIndex = (currentTaglineIndex + 1) % taglines.length;
+                taglineElement.textContent = taglines[currentTaglineIndex];
+                
+                // Fade in
+                taglineElement.classList.remove('fade-out');
+            }, 500);
+        }
+
+        // Rotate every 3 seconds
+        setInterval(rotateTagline, 3000);
+
+    </script>
+    
 </body>
 </html>

@@ -946,7 +946,7 @@
             
             <div class="skills-container">
                 <div class="skill-category">
-                    <h3>Engineering</h3>
+                    <h3>Fabrication</h3>
                     <ul>
                         <li>SolidWorks</li>
                         <li>3D Printing</li>
@@ -956,7 +956,7 @@
                 </div>
 
                 <div class="skill-category">
-                    <h3>Code</h3>
+                    <h3>Programming</h3>
                     <ul>
                         <li>Python</li>
                         <li>MATLAB</li>
@@ -1299,6 +1299,11 @@
         setInterval(rotateTagline, 3000);
 
         function throwConfetti() {
+            const styles = getComputedStyle(document.documentElement);
+            const primary = styles.getPropertyValue('--color-primary').trim();
+            const secondary = styles.getPropertyValue('--color-secondary').trim();
+            const text = styles.getPropertyValue('--color-text').trim();
+
             // Multiple bursts
             const duration = 3 * 1000;
             const end = Date.now() + duration;
@@ -1309,14 +1314,14 @@
                     angle: 60,
                     spread: 55,
                     origin: { x: 0 },
-                    colors: ['#64b496', '#7ec8e3', '#ffa07a']
+                    colors: [primary, secondary, text]
                 });
                 confetti({
                     particleCount: 3,
                     angle: 120,
                     spread: 55,
                     origin: { x: 1 },
-                    colors: ['#64b496', '#7ec8e3', '#ffa07a']
+                    colors: [primary, secondary, text]
                 });
 
                 if (Date.now() < end) {
